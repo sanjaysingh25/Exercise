@@ -1,0 +1,156 @@
+<!Doctype html>
+<html>
+<title>
+    Shuffle and Sort
+</title>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .head-text {
+          text-align: center;
+          margin-bottom: 10px;
+          font-weight: bold;
+        }
+        .main-container {
+          display: flex;
+        }
+        .grid-container {
+          display: grid;
+          grid-template-columns: auto auto auto;
+          background-color: #2196F3;
+          width: 80%;
+        }
+        .grid-item {
+          background-color: rgba(255, 255, 255, 0.8);
+          border: 1px solid rgba(0, 0, 0, 0.8);
+          padding: 80px;
+          font-size: 30px;
+          text-align: center;
+          color: #FFF;
+        }
+        .btn-container {
+          width: 20%;
+          margin-left: 10px;
+        }
+        .btn-suffle, .btn-sort {
+          background-color: #2B8EAD; /* Green */
+          width:255px;
+          height:55px;
+          text-align:center;
+          line-height:1.1em;
+          color: #fff;
+          font-weight:bold;
+          font-size: 1.1em;
+          margin: 0.5rem 0;
+          border-radius: 5px;
+          border: none;
+          cursor: pointer;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+            box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+        }
+
+        .one {
+          background-color: #726f6f;
+        }
+        .two {
+          background-color: #333333;
+        }
+        .three {
+          background-color: #eec6c6;
+        }
+        .four {
+          background-color: #4e2c2c;
+        }
+        .five {
+          background-color: #72C3DC;
+        }
+        .six {
+          background-color: #2B8EAD;
+        }
+        .seven {
+          background-color: #6F98A8;
+        }
+        .eight {
+          background-color: #BFBFBF;
+        }
+        .nine {
+          background-color: #2F454E;
+        }
+
+        @media only screen and (max-width: 480px) {
+          .grid-container {
+            display: block;
+            grid-template-columns: auto auto auto;
+            width: 100%;
+            margin-top: 10rem;
+          }
+          .btn-container {
+            position: absolute;
+            margin: 0;
+            text-align: center;
+            width: 100%;
+          }
+        }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+          $(document).ready(function(){
+            function sortGridData() {
+              var arr = [];
+              for(var i=0; i<9; i++) {
+                arr.push($($('.grid-container').children()[i]).text());
+              }
+              arr.sort();
+              return arr;
+            }
+
+            function setGridData(arr) {
+              for(var i = 0; i < 9; i++) {
+                $($('.grid-container').children()[i]).text(arr[i]);
+              }
+            }
+
+            function shuffleArray(array) {
+              array.sort(() => Math.random() - 0.5);
+              return array;
+            }
+
+            $('#sort').click(function() {
+              var data = sortGridData();
+              setGridData(data);
+            })
+
+            $('#shuffle').click(function() {
+              var arr = sortGridData();
+              var data = shuffleArray(arr);
+              setGridData(data);
+            })
+            
+          });
+            
+        </script>
+</head>
+<body>
+    <div class="head-text">Shuffle and Sort</div>
+    <div class="main-container">
+      <div class="grid-container">
+          <div class="grid-item one">8</div>
+          <div class="grid-item two">2</div>
+          <div class="grid-item three">4</div>  
+          <div class="grid-item four">6</div>
+          <div class="grid-item five">5</div>
+          <div class="grid-item six">3</div>  
+          <div class="grid-item seven">7</div>
+          <div class="grid-item eight">1</div>
+          <div class="grid-item nine">9</div>  
+        </div>
+        <div class="btn-container">
+          <button id= "shuffle" class=" btn btn-suffle">Shuffle</button>
+          <button id= "sort" class="btn btn-sort">Sort</button>
+        </div>
+    </div>
+</body>
+</html>
